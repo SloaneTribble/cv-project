@@ -1,8 +1,12 @@
-.header-container{
+.main-container{
   height: 100vh;
   background-color: blue;
   color: black;
   border: 4px solid black;
+}
+
+.header-container{
+  border: 2px solid black;
 }
 
 .header{

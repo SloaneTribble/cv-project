@@ -84,14 +84,21 @@ class GeneralContainer extends Component {
       );
     } else {
       buttonText = "Edit";
+      generalField = (
+        <div className="general-info">
+          <div className="email">{this.state.email}</div>
+          <div className="phone">{this.state.phone}</div>
+          <div className="website">{this.state.website}</div>
+        </div>
+      );
     }
 
     return (
       <div className="general">
+        {generalField}
         <button className="general-edit" onClick={this.generalEdit}>
           {buttonText}
         </button>
-        {generalField}
       </div>
     );
   }

@@ -8,6 +8,8 @@ class MainContainer extends Component {
 
     this.headerEdit = this.headerEdit.bind(this);
 
+    this.nameChange = this.nameChange.bind(this);
+
     this.state = {
       name: "Johnny Two Hats",
       header: {
@@ -17,14 +19,18 @@ class MainContainer extends Component {
   }
 
   headerEdit() {
-    console.log(`Before updating mode: ${this.state.header.editMode}`);
     let header = this.state.header;
     header.editMode = header.editMode ? false : true;
     this.setState(() => ({
       header,
     }));
-    console.log(`After updating mode: ${this.state.header.editMode}`);
   }
+
+  nameChange = (e) => {
+    this.setState({
+      name: e.target.value,
+    });
+  };
 
   render() {
     return (
@@ -33,6 +39,8 @@ class MainContainer extends Component {
           title="CV Application"
           name={this.state.name}
           handler={this.headerEdit}
+          handleChange={this.nameChange}
+          editMode={this.state.header.editMode}
         />
       </div>
     );

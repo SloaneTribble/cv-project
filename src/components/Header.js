@@ -7,10 +7,29 @@ class Header extends Component {
   }
 
   render() {
+    const editMode = this.props.editMode;
+
+    let nameField;
+
+    if (editMode) {
+      nameField = (
+        <form className="name-form">
+          <label htmlFor="name">Name: </label>
+          <input
+            type="text"
+            id="name"
+            value={this.props.name}
+            onChange={this.props.handleChange}
+          ></input>
+        </form>
+      );
+    } else {
+      nameField = <div className="header-name">{this.props.name}</div>;
+    }
     return (
       <div className="header">
         <div className="header-title">{this.props.title}</div>
-        <div className="header-name">{this.props.name}</div>
+        {nameField}
         <button className="name-edit" onClick={this.props.handler}>
           Edit
         </button>

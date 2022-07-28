@@ -14,6 +14,12 @@ class GeneralContainer extends Component {
     };
 
     this.generalEdit = this.generalEdit.bind(this);
+
+    this.emailChange = this.emailChange.bind(this);
+
+    this.phoneChange = this.phoneChange.bind(this);
+
+    this.websiteChange = this.websiteChange.bind(this);
   }
 
   generalEdit() {
@@ -22,13 +28,60 @@ class GeneralContainer extends Component {
     }));
   }
 
+  emailChange = (e) => {
+    this.setState({
+      email: e.target.value,
+    });
+  };
+
+  phoneChange = (e) => {
+    this.setState({
+      phone: e.target.value,
+    });
+  };
+
+  websiteChange = (e) => {
+    this.setState({
+      website: e.target.value,
+    });
+  };
+
   render() {
     const editMode = this.state.editMode;
 
     let buttonText;
 
+    let generalField;
+
     if (editMode) {
       buttonText = "Submit";
+      generalField = (
+        <form className="general-form">
+          <label htmlFor="email">Email: </label>
+          <input
+            type="email"
+            id="email"
+            value={this.state.email}
+            onChange={this.emailChange}
+          ></input>
+
+          <label htmlFor="phone">Phone: </label>
+          <input
+            type="text"
+            id="phone"
+            value={this.state.phone}
+            onChange={this.phoneChange}
+          ></input>
+
+          <label htmlFor="website">Website: </label>
+          <input
+            type="text"
+            id="website"
+            value={this.state.website}
+            onChange={this.websiteChange}
+          ></input>
+        </form>
+      );
     } else {
       buttonText = "Edit";
     }
@@ -38,6 +91,7 @@ class GeneralContainer extends Component {
         <button className="general-edit" onClick={this.generalEdit}>
           {buttonText}
         </button>
+        {generalField}
       </div>
     );
   }

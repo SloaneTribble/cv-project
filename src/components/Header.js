@@ -11,7 +11,10 @@ class Header extends Component {
 
     let nameField;
 
+    let buttonText;
+
     if (editMode) {
+      buttonText = "submit";
       nameField = (
         <form className="name-form">
           <label htmlFor="name">Name: </label>
@@ -24,6 +27,7 @@ class Header extends Component {
         </form>
       );
     } else {
+      buttonText = "edit";
       nameField = <div className="header-name">{this.props.name}</div>;
     }
     return (
@@ -31,7 +35,7 @@ class Header extends Component {
         <div className="header-title">{this.props.title}</div>
         {nameField}
         <button className="name-edit" onClick={this.props.handler}>
-          Edit
+          {buttonText}
         </button>
       </div>
     );

@@ -7,10 +7,6 @@ class SchoolOverview extends Component {
 
   render() {
     const schools = this.props.schools;
-    console.log(schools);
-    let school1 = schools[0];
-
-    let school1Name = school1.name;
 
     let overview;
 
@@ -20,6 +16,9 @@ class SchoolOverview extends Component {
         <li>Major: {school.major}</li>
         <li>Graduation Date: {school.gradYear}</li>
         <br></br>
+        <button className={school.id} onClick={this.props.deleteSchool}>
+          Delete
+        </button>
       </ul>
     ));
 

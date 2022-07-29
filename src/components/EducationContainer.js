@@ -45,6 +45,8 @@ class EducationContainer extends Component {
     this.handleGradYearChange = this.handleGradYearChange.bind(this);
 
     this.submitSchool = this.submitSchool.bind(this);
+
+    this.deleteSchool = this.deleteSchool.bind(this);
   }
 
   addModeToggle() {
@@ -57,6 +59,7 @@ class EducationContainer extends Component {
   handleNameChange = (e) => {
     this.setState({
       currentSchool: {
+        id: this.state.currentSchool.id,
         name: e.target.value,
         major: this.state.currentSchool.major,
         gradYear: this.state.currentSchool.gradYear,
@@ -67,6 +70,7 @@ class EducationContainer extends Component {
   handleMajorChange = (e) => {
     this.setState({
       currentSchool: {
+        id: this.state.currentSchool.id,
         name: this.state.currentSchool.name,
         major: e.target.value,
         gradYear: this.state.currentSchool.gradYear,
@@ -77,6 +81,7 @@ class EducationContainer extends Component {
   handleGradYearChange = (e) => {
     this.setState({
       currentSchool: {
+        id: this.state.currentSchool.id,
         name: this.state.currentSchool.name,
         major: this.state.currentSchool.major,
         gradYear: e.target.value,
@@ -100,6 +105,21 @@ class EducationContainer extends Component {
     });
   };
 
+  deleteSchool = (e) => {
+    console.log(e.target.className);
+    const schoolID = e.target.className;
+
+    let schools = this.state.schools;
+
+    let updatedSchools = schools.filter((school) => {
+      return school.id !== schoolID;
+    });
+
+    this.setState({
+      schools: updatedSchools,
+    });
+  };
+
   render() {
     const currentMode = this.state.addMode;
 
@@ -111,9 +131,12 @@ class EducationContainer extends Component {
     }
 
     return (
-      <div>
+      <div className="education">
         <span>Education</span>
-        <SchoolOverview schools={this.state.schools} />
+        <SchoolOverview
+          schools={this.state.schools}
+          deleteSchool={this.deleteSchool}
+        />
         <button className="new-school" onClick={this.addModeToggle}>
           {addText}
         </button>

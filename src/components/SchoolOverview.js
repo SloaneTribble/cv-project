@@ -12,7 +12,18 @@ class SchoolOverview extends Component {
 
     let school1Name = school1.name;
 
-    return <div className="school-overview">{school1Name}</div>;
+    let overview;
+
+    overview = schools.map((school) => (
+      <ul key={school.id}>
+        <li>Name: {school.name}</li>
+        <li>Major: {school.major}</li>
+        <li>Graduation Date: {school.gradYear}</li>
+        <br></br>
+      </ul>
+    ));
+
+    return <div className="school-overview">{overview}</div>;
   }
 }
 

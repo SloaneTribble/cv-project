@@ -29,10 +29,10 @@ class EducationContainer extends Component {
         },
       ],
       currentSchool: {
-        id: "",
-        name: "Stool School",
-        major: "Stool Legs",
-        gradYear: "01/01/1990",
+        id: uniqid(),
+        name: "",
+        major: "",
+        gradYear: "",
       },
     };
 
@@ -90,6 +90,13 @@ class EducationContainer extends Component {
     console.log(this.state.currentSchool);
     this.setState({
       schools: this.state.schools.concat(this.state.currentSchool),
+      addMode: false,
+      currentSchool: {
+        id: uniqid(),
+        name: "",
+        major: "",
+        gradYear: "",
+      },
     });
   };
 
@@ -100,7 +107,7 @@ class EducationContainer extends Component {
     if (currentMode) {
       addText = "Close";
     } else {
-      addText = "Edit";
+      addText = "Add School";
     }
 
     return (

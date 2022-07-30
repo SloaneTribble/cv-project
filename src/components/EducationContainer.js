@@ -179,8 +179,8 @@ class EducationContainer extends Component {
           {addText}
         </button>
         <AddSchool
-          currentSchool={this.state.currentSchool}
           addMode={this.state.addMode}
+          currentSchool={this.state.currentSchool}
           nameChange={this.handleNameChange}
           majorChange={this.handleMajorChange}
           gradYearChange={this.handleGradYearChange}

@@ -6,6 +6,8 @@ import { GeneralContainer } from "./GeneralContainer";
 
 import { EducationContainer } from "./EducationContainer";
 
+import { PracticalContainer } from "./PracticalContainer";
+
 class MainContainer extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +19,7 @@ class MainContainer extends Component {
         <HeaderContainer />
         <GeneralContainer />
         <EducationContainer />
+        <PracticalContainer />
       </div>
     );
   }

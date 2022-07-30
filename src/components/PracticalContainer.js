@@ -19,8 +19,8 @@ class PracticalContainer extends Component {
           company: "The Zooniverse",
           title: "Zookeeper",
           mainTasks: "Clean, Maintain, Operate",
-          startDate: "01/01/1990",
-          endDate: "01/02/1990",
+          startDate: "1990-01-01",
+          endDate: "1991-01-10",
         },
         {
           editMode: false,

@@ -6,7 +6,7 @@ class SchoolOverview extends Component {
   }
 
   render() {
-    const schools = this.props.schools;
+    let schools = this.props.schools;
 
     let overview;
 

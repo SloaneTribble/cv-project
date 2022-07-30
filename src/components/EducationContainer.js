@@ -6,6 +6,8 @@ import { AddSchool } from "./AddSchool";
 
 import uniqid from "uniqid";
 
+
+
 // Next: allow user to edit each school entry
 
 class EducationContainer extends Component {
@@ -20,14 +22,14 @@ class EducationContainer extends Component {
           id: uniqid(),
           name: "School One",
           major: "Major",
-          gradYear: "10/10/1010",
+          gradYear: "1964-01-01",
         },
         {
           editMode: false,
           id: uniqid(),
           name: "School Two",
           major: "Majeur",
-          gradYear: "11/11/1910",
+          gradYear: "1983-12-25",
         },
       ],
       currentSchool: {

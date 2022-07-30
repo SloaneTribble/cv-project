@@ -8,8 +8,6 @@ class SchoolOverview extends Component {
   render() {
     const schools = this.props.schools;
 
-    console.log(schools);
-
     let overview;
 
     overview = schools.map((school) =>

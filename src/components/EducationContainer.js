@@ -6,7 +6,7 @@ import { AddSchool } from "./AddSchool";
 
 import uniqid from "uniqid";
 
-// Users should be able to add, edit and remove schools individually
+// Next: allow user to edit each school entry
 
 class EducationContainer extends Component {
   constructor(props) {
@@ -16,12 +16,14 @@ class EducationContainer extends Component {
       addMode: false,
       schools: [
         {
+          editMode: false,
           id: uniqid(),
           name: "School One",
           major: "Major",
           gradYear: "10/10/1010",
         },
         {
+          editMode: false,
           id: uniqid(),
           name: "School Two",
           major: "Majeur",
@@ -29,6 +31,7 @@ class EducationContainer extends Component {
         },
       ],
       currentSchool: {
+        editMode: false,
         id: uniqid(),
         name: "",
         major: "",
@@ -45,6 +48,10 @@ class EducationContainer extends Component {
     this.handleGradYearChange = this.handleGradYearChange.bind(this);
 
     this.submitSchool = this.submitSchool.bind(this);
+
+    this.editSchool = this.editSchool.bind(this);
+
+    this.submitEdit = this.submitEdit.bind(this);
 
     this.deleteSchool = this.deleteSchool.bind(this);
   }
@@ -105,6 +112,24 @@ class EducationContainer extends Component {
     });
   };
 
+  editSchool = (e) => {
+    console.log(e.target.className);
+    let currentSchools = [...this.state.schools];
+    let index = currentSchools.findIndex(
+      (obj) => (obj.id = e.target.className)
+    );
+    let currentSchool = currentSchools[index];
+    currentSchool.editMode = true;
+    this.setState({
+      schools: currentSchools,
+    });
+  };
+
+  submitEdit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
+
   deleteSchool = (e) => {
     console.log(e.target.className);
     const schoolID = e.target.className;
@@ -135,6 +160,8 @@ class EducationContainer extends Component {
         <span>Education</span>
         <SchoolOverview
           schools={this.state.schools}
+          editSchool={this.editSchool}
+          submitEdit={this.submitEdit}
           deleteSchool={this.deleteSchool}
         />
         <button className="new-school" onClick={this.addModeToggle}>

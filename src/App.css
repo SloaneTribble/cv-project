@@ -24,3 +24,7 @@
   background-color: aquamarine;
   border: 2px solid black;
 }
+
+.main-tasks{
+  white-space: pre-line;
+}

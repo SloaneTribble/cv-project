@@ -15,7 +15,7 @@ class JobOverview extends Component {
         <ul key={job.id}>
           <li>Company: {job.company}</li>
           <li>Title: {job.title}</li>
-          <li>Main Tasks: {job.mainTasks}</li>
+          <li className="main-tasks">Main Tasks: {job.mainTasks}</li>
           <li>Start Date: {job.startDate}</li>
           <li>End Date: {job.endDate}</li>
           <br></br>
@@ -32,14 +32,14 @@ class JobOverview extends Component {
           <input type="text" id="company" defaultValue={job.company}></input>
 
           <label htmlFor="title">Title: </label>
-          <input type="text" id="major" defaultValue={job.title}></input>
+          <input type="text" id="title" defaultValue={job.title}></input>
 
-          <label htmlFor="main-tasks">Main Tasks: </label>
-          <input
+          <label htmlFor="mainTasks">Main Tasks: </label>
+          <textarea
             type="textarea"
-            id="main-tasks"
+            id="mainTasks"
             defaultValue={job.mainTasks}
-          ></input>
+          ></textarea>
 
           <label htmlFor="startDate">Start Date: </label>
           <input

@@ -56,6 +56,12 @@ class PracticalContainer extends Component {
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
 
     this.editJob = this.editJob.bind(this);
+
+    this.submitEdit = this.submitEdit.bind(this);
+
+    this.deleteJob = this.deleteJob.bind(this);
+
+    this.submitJob = this.submitJob.bind(this);
   }
 
   addModeToggle() {
@@ -117,6 +123,63 @@ class PracticalContainer extends Component {
     this.setState({ schools: currentJobs });
   };
 
+  submitEdit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    let newCompany = e.target.company.value;
+    let newTitle = e.target.title.value;
+    let newMainTasks = e.target.mainTasks.value;
+    let newStartDate = e.target.startDate.value;
+    let newEndDate = e.target.endDate.value;
+    let workingID = e.target.className;
+
+    let currentJobs = [...this.state.jobs];
+    let index = currentJobs.findIndex((obj) => obj.id === workingID);
+    let activeJob = currentJobs[index];
+
+    activeJob.company = newCompany;
+    activeJob.title = newTitle;
+    activeJob.mainTasks = newMainTasks;
+    activeJob.startDate = newStartDate;
+    activeJob.endDate = newEndDate;
+    activeJob.editMode = false;
+
+    this.setState({ jobss: currentJobs });
+  };
+
+  deleteJob = (e) => {
+    console.log(e.target.className);
+    const jobID = e.target.className;
+
+    let jobs = this.state.jobs;
+
+    let updatedJobs = jobs.filter((school) => {
+      return school.id !== jobID;
+    });
+
+    this.setState({
+      jobs: updatedJobs,
+    });
+  };
+
+  submitJob = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    console.log(this.state.currentJob);
+    this.setState({
+      jobs: this.state.jobs.concat(this.state.currentJob),
+      addMode: false,
+      currentJob: {
+        editMode: false,
+        id: uniqid(),
+        company: "",
+        title: "",
+        startDate: "",
+        endDate: "",
+      },
+    });
+  };
+
   render() {
     const currentMode = this.state.addMode;
 
@@ -146,6 +209,7 @@ class PracticalContainer extends Component {
           mainTasksChange={this.handleMainTasksChange}
           startDateChange={this.handleStartDateChange}
           endDateChange={this.handleEndDateChange}
+          submitJob={this.submitJob}
         />
       </div>
     );

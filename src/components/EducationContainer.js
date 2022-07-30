@@ -113,21 +113,32 @@ class EducationContainer extends Component {
   };
 
   editSchool = (e) => {
-    console.log(e.target.className);
     let currentSchools = [...this.state.schools];
     let index = currentSchools.findIndex(
-      (obj) => (obj.id = e.target.className)
+      (obj) => obj.id === e.target.className
     );
-    let currentSchool = currentSchools[index];
-    currentSchool.editMode = true;
-    this.setState({
-      schools: currentSchools,
-    });
+    currentSchools[index].editMode = true;
+    this.setState({ schools: currentSchools });
   };
 
   submitEdit = (e) => {
     e.preventDefault();
     console.log(e.target);
+    let newName = e.target.name.value;
+    let newMajor = e.target.major.value;
+    let newGradYear = e.target.gradYear.value;
+    let workingID = e.target.className;
+
+    let currentSchools = [...this.state.schools];
+    let index = currentSchools.findIndex((obj) => obj.id === workingID);
+    let activeSchool = currentSchools[index];
+
+    activeSchool.name = newName;
+    activeSchool.major = newMajor;
+    activeSchool.gradYear = newGradYear;
+    activeSchool.editMode = false;
+
+    this.setState({ schools: currentSchools });
   };
 
   deleteSchool = (e) => {

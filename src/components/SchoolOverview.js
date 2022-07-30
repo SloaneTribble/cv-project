@@ -8,6 +8,8 @@ class SchoolOverview extends Component {
   render() {
     const schools = this.props.schools;
 
+    console.log(schools);
+
     let overview;
 
     overview = schools.map((school) =>
@@ -26,7 +28,11 @@ class SchoolOverview extends Component {
           </button>
         </ul>
       ) : (
-        <form key={school.id} onSubmit={this.props.submitEdit}>
+        <form
+          key={school.id}
+          className={school.id}
+          onSubmit={this.props.submitEdit}
+        >
           <label htmlFor="name">Name: </label>
           <input type="text" id="name"></input>
           <label htmlFor="major">Major: </label>

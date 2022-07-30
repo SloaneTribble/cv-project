@@ -18,7 +18,6 @@ class SchoolOverview extends Component {
           <li>Name: {school.name}</li>
           <li>Major: {school.major}</li>
           <li>Graduation Date: {school.gradYear}</li>
-          <li>Edit Mode: {school.editMode.toString()} </li>
           <br></br>
           <button className={school.id} onClick={this.props.editSchool}>
             Edit
@@ -34,11 +33,15 @@ class SchoolOverview extends Component {
           onSubmit={this.props.submitEdit}
         >
           <label htmlFor="name">Name: </label>
-          <input type="text" id="name"></input>
+          <input type="text" id="name" defaultValue={school.name}></input>
           <label htmlFor="major">Major: </label>
-          <input type="text" id="major"></input>
+          <input type="text" id="major" defaultValue={school.major}></input>
           <label htmlFor="gradYear">Graduation Date: </label>
-          <input type="date" id="gradYear"></input>
+          <input
+            type="date"
+            id="gradYear"
+            defaultValue={school.gradYear}
+          ></input>
           <button type="submit">Submit</button>
         </form>
       )

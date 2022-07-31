@@ -12,17 +12,18 @@ class SchoolOverview extends Component {
 
     overview = schools.map((school) =>
       school.editMode === false ? (
-        <ul key={school.id}>
-          <li>Name: {school.name}</li>
-          <li>Major: {school.major}</li>
-          <li>Graduation Date: {school.gradYear}</li>
-          <br></br>
-          <button className={school.id} onClick={this.props.editSchool}>
-            Edit
-          </button>
-          <button className={school.id} onClick={this.props.deleteSchool}>
-            Delete
-          </button>
+        <ul className="school" key={school.id}>
+          <li className="school-detail">Name: {school.name}</li>
+          <li className="school-detail">Major: {school.major}</li>
+          <li className="school-detail">Graduation Date: {school.gradYear}</li>
+          <div className="school-buttons">
+            <button className={school.id} onClick={this.props.editSchool}>
+              Edit
+            </button>
+            <button className={school.id} onClick={this.props.deleteSchool}>
+              Delete
+            </button>
+          </div>
         </ul>
       ) : (
         <form

@@ -148,6 +148,7 @@ class EducationContainer extends Component {
           submitEdit={this.submitEdit}
           deleteSchool={this.deleteSchool}
         />
+        <br></br>
         <button className="new-school" onClick={this.addModeToggle}>
           {addText}
         </button>

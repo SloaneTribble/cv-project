@@ -147,13 +147,14 @@ class PracticalContainer extends Component {
     }
     return (
       <div className="practical">
-        <span>Practical Experience</span>
+        <span className="practical-title">Practical Experience</span>
         <JobOverview
           jobs={this.state.jobs}
           editJob={this.editJob}
           deleteJob={this.deleteJob}
           submitEdit={this.submitEdit}
         />
+        <br></br>
         <button className="new-job" onClick={this.addModeToggle}>
           {addText}
         </button>

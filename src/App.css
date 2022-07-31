@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
 
+:root{
+  --shadow: inset 0px 0px 10px rgba(0,0,0,.6);
+}
+
 *{
   font-family: 'Uchen', serif;
 }
@@ -18,10 +22,14 @@ button:hover{
 }
 
 .main-container{
-  height: 100%;
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  background-color: bisque;
   color: black;
   border: 4px solid black;
+  box-shadow: var(--shadow);
 }
 
 /*
@@ -65,8 +73,21 @@ button:hover{
   background-color:bisque;
   border: 2px solid black;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.general-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr 2fr;
+}
+
+.general-form label{
+  grid-column: 2;
+  justify-self: end;
+  padding-right: 5px;
 }
 
 .general-edit{
@@ -85,11 +106,12 @@ button:hover{
 
 
 .education{
-  background-color: aquamarine;
+  background-color: antiquewhite;
   border: 2px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 6px 4px -4px black;
 }
 
 .education span{
@@ -99,9 +121,18 @@ button:hover{
   border-bottom: 2px solid black;
 }
 
+.school-overview form{
+  display: grid;
+}
+
+.school-overview form button{
+  width: 50%;
+  justify-self: center;
+}
+
 .school{
   display: grid;
-  grid-template-columns: 90% 1fr;
+  grid-template-columns: 3fr 1fr;
   grid-template-rows: repeat(3, 1fr);
   align-items: center;
   justify-content: center;
@@ -110,13 +141,39 @@ button:hover{
 
 .school-buttons{
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .school-detail{
   grid-column: 1;
 }
 
+.add-school form{
+  display: grid;
+  width: 25vw;
+}
+
+/*
+* End education
+*/
+
+/*
+* Begin practical
+*/
+
+.practical{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.practical-title{
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-bottom: solid 2px;
+  width: 80%;
+}
 
 .job-overview{
   display: flex;
@@ -125,6 +182,31 @@ button:hover{
   align-items: center;
 }
 
+.job-overview form{
+  display: grid;
+}
+
+.job{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  border-bottom: solid 2px black;
+}
+
+.job li{
+  grid-column: 1;
+}
+
+.job-buttons{
+  grid-column: 2;
+  grid-row: 5;
+}
+
 .main-tasks{
   white-space: pre-line;
 }
+
+.add-job form{
+  display: grid;
+  width: 40vw;
+}
+

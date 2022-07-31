@@ -12,19 +12,20 @@ class JobOverview extends Component {
 
     overview = jobs.map((job) =>
       job.editMode === false ? (
-        <ul key={job.id}>
+        <ul key={job.id} className="job">
           <li>Company: {job.company}</li>
           <li>Title: {job.title}</li>
           <li className="main-tasks">Main Tasks: {job.mainTasks}</li>
           <li>Start Date: {job.startDate}</li>
           <li>End Date: {job.endDate}</li>
-          <br></br>
-          <button className={job.id} onClick={this.props.editJob}>
-            Edit
-          </button>
-          <button className={job.id} onClick={this.props.deleteJob}>
-            Delete
-          </button>
+          <div className="job-buttons">
+            <button className={job.id} onClick={this.props.editJob}>
+              Edit
+            </button>
+            <button className={job.id} onClick={this.props.deleteJob}>
+              Delete
+            </button>
+          </div>
         </ul>
       ) : (
         <form key={job.id} className={job.id} onSubmit={this.props.submitEdit}>
@@ -38,6 +39,7 @@ class JobOverview extends Component {
           <textarea
             type="textarea"
             id="mainTasks"
+            rows="4"
             defaultValue={job.mainTasks}
           ></textarea>
 

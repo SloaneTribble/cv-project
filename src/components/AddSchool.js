@@ -10,7 +10,7 @@ class AddSchool extends Component {
 
     if (addMode) {
       return (
-        <div>
+        <div className="add-school">
           <form onSubmit={this.props.submitSchool}>
             <label htmlFor="name">Name: </label>
             <input

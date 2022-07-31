@@ -6,8 +6,6 @@ import { AddSchool } from "./AddSchool";
 
 import uniqid from "uniqid";
 
-
-
 // Next: allow user to edit each school entry
 
 class EducationContainer extends Component {
@@ -43,11 +41,7 @@ class EducationContainer extends Component {
 
     this.addModeToggle = this.addModeToggle.bind(this);
 
-    this.handleNameChange = this.handleNameChange.bind(this);
-
-    this.handleMajorChange = this.handleMajorChange.bind(this);
-
-    this.handleGradYearChange = this.handleGradYearChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.submitSchool = this.submitSchool.bind(this);
 
@@ -65,37 +59,14 @@ class EducationContainer extends Component {
     console.log(this.state.addMode);
   }
 
-  handleNameChange = (e) => {
-    this.setState({
+  handleChange = (e) => {
+    console.log(e.target);
+    this.setState((prevState) => ({
       currentSchool: {
-        id: this.state.currentSchool.id,
-        name: e.target.value,
-        major: this.state.currentSchool.major,
-        gradYear: this.state.currentSchool.gradYear,
+        ...prevState.currentSchool,
+        [e.target.id]: e.target.value,
       },
-    });
-  };
-
-  handleMajorChange = (e) => {
-    this.setState({
-      currentSchool: {
-        id: this.state.currentSchool.id,
-        name: this.state.currentSchool.name,
-        major: e.target.value,
-        gradYear: this.state.currentSchool.gradYear,
-      },
-    });
-  };
-
-  handleGradYearChange = (e) => {
-    this.setState({
-      currentSchool: {
-        id: this.state.currentSchool.id,
-        name: this.state.currentSchool.name,
-        major: this.state.currentSchool.major,
-        gradYear: e.target.value,
-      },
-    });
+    }));
   };
 
   submitSchool = (e) => {
@@ -182,10 +153,8 @@ class EducationContainer extends Component {
         </button>
         <AddSchool
           addMode={this.state.addMode}
+          handleChange={this.handleChange}
           currentSchool={this.state.currentSchool}
-          nameChange={this.handleNameChange}
-          majorChange={this.handleMajorChange}
-          gradYearChange={this.handleGradYearChange}
           submitSchool={this.submitSchool}
         />
       </div>

@@ -17,21 +17,21 @@ class AddSchool extends Component {
               type="text"
               id="name"
               value={this.props.currentSchool.name}
-              onChange={this.props.nameChange}
+              onChange={this.props.handleChange}
             ></input>
             <label htmlFor="major">Major: </label>
             <input
               type="text"
               id="major"
               value={this.props.currentSchool.major}
-              onChange={this.props.majorChange}
+              onChange={this.props.handleChange}
             ></input>
             <label htmlFor="gradYear">Graduation Date: </label>
             <input
               type="date"
               id="gradYear"
               value={this.props.currentSchool.gradYear}
-              onChange={this.props.gradYearChange}
+              onChange={this.props.handleChange}
             ></input>
             <button type="submit">Submit</button>
           </form>

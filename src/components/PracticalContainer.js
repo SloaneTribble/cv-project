@@ -45,15 +45,7 @@ class PracticalContainer extends Component {
 
     this.addModeToggle = this.addModeToggle.bind(this);
 
-    this.handleCompanyChange = this.handleCompanyChange.bind(this);
-
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-
-    this.handleMainTasksChange = this.handleMainTasksChange.bind(this);
-
-    this.handleStartDateChange = this.handleStartDateChange.bind(this);
-
-    this.handleEndDateChange = this.handleEndDateChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.editJob = this.editJob.bind(this);
 
@@ -71,47 +63,11 @@ class PracticalContainer extends Component {
     console.log(this.state.addMode);
   }
 
-  handleCompanyChange = (e) => {
+  handleChange = (e) => {
     this.setState((prevState) => ({
       currentJob: {
         ...prevState.currentJob,
-        company: e.target.value,
-      },
-    }));
-  };
-
-  handleTitleChange = (e) => {
-    this.setState((prevState) => ({
-      currentJob: {
-        ...prevState.currentJob,
-        title: e.target.value,
-      },
-    }));
-  };
-
-  handleMainTasksChange = (e) => {
-    this.setState((prevState) => ({
-      currentJob: {
-        ...prevState.currentJob,
-        mainTasks: e.target.value,
-      },
-    }));
-  };
-
-  handleStartDateChange = (e) => {
-    this.setState((prevState) => ({
-      currentJob: {
-        ...prevState.currentJob,
-        startDate: e.target.value,
-      },
-    }));
-  };
-
-  handleEndDateChange = (e) => {
-    this.setState((prevState) => ({
-      currentJob: {
-        ...prevState.currentJob,
-        endDate: e.target.value,
+        [e.target.id]: e.target.value,
       },
     }));
   };
@@ -205,7 +161,7 @@ class PracticalContainer extends Component {
           addMode={this.state.addMode}
           currentJob={this.state.currentJob}
           companyChange={this.handleCompanyChange}
-          titleChange={this.handleTitleChange}
+          handleChange={this.handleChange}
           mainTasksChange={this.handleMainTasksChange}
           startDateChange={this.handleStartDateChange}
           endDateChange={this.handleEndDateChange}

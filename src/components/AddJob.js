@@ -19,7 +19,7 @@ class AddJob extends Component {
                   type="text"
                   id="company"
                   value={this.props.currentJob.company}
-                  onChange={this.props.companyChange}
+                  onChange={this.props.handleChange}
                 ></input>
               </li>
               <li>
@@ -28,7 +28,7 @@ class AddJob extends Component {
                   type="text"
                   id="title"
                   value={this.props.currentJob.title}
-                  onChange={this.props.titleChange}
+                  onChange={this.props.handleChange}
                 ></input>
               </li>
               <li>
@@ -38,7 +38,7 @@ class AddJob extends Component {
                   id="mainTasks"
                   rows={5}
                   value={this.props.currentJob.mainTasks}
-                  onChange={this.props.mainTasksChange}
+                  onChange={this.props.handleChange}
                 ></input>
               </li>
               <li>
@@ -47,7 +47,7 @@ class AddJob extends Component {
                   type="date"
                   id="startDate"
                   value={this.props.currentJob.startDate}
-                  onChange={this.props.startDateChange}
+                  onChange={this.props.handleChange}
                 ></input>
               </li>
               <li>
@@ -56,7 +56,7 @@ class AddJob extends Component {
                   type="date"
                   id="endDate"
                   value={this.props.currentJob.endDate}
-                  onChange={this.props.endDateChange}
+                  onChange={this.props.handleChange}
                 ></input>
               </li>
               <button type="submit">Submit</button>

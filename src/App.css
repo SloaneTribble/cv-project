@@ -26,9 +26,8 @@ button:hover{
   flex-direction: column;
   flex: 1;
   min-height: 100vh;
-  background-color: bisque;
+  background-color: rgb(38, 141, 141);
   color: black;
-  border: 4px solid black;
   box-shadow: var(--shadow);
 }
 
@@ -70,7 +69,7 @@ button:hover{
 */
 
 .general{
-  background-color:bisque;
+  background-color:rgb(38, 141, 141);
   border: 2px solid black;
   display: flex;
   flex-direction: column;

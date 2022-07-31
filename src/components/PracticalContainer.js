@@ -28,8 +28,8 @@ class PracticalContainer extends Component {
           company: "Kraftwork Orange",
           title: "Leading Man",
           mainTasks: "Write, Rewrite, Expedite",
-          startDate: "02/01/1991",
-          endDate: "02/02/1992",
+          startDate: "1991-02-02",
+          endDate: "1992-04-12",
         },
       ],
       currentJob: {

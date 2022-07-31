@@ -36,7 +36,6 @@ class HeaderContainer extends Component {
     return (
       <div className="header-container">
         <Header
-          title="CV Application"
           name={this.state.name}
           handler={this.headerEdit}
           handleChange={this.nameChange}

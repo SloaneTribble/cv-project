@@ -1,49 +1,39 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { Header } from "./Header";
 
-class HeaderContainer extends Component {
-  constructor(props) {
-    super(props);
+function HeaderContainer() {
+  const [state, setState] = useState({
+    name: "Johnny Two Hats",
+    header: {
+      editMode: false,
+    },
+  });
 
-    this.headerEdit = this.headerEdit.bind(this);
+  const headerEdit = function () {
+    let currentState = { ...state };
+    console.log(currentState.header.editMode);
 
-    this.nameChange = this.nameChange.bind(this);
+    currentState.header.editMode = currentState.header.editMode ? false : true;
+    console.log(currentState.header.editMode);
 
-    this.state = {
-      name: "Johnny Two Hats",
-      header: {
-        editMode: false,
-      },
-    };
-  }
-
-  headerEdit() {
-    let header = this.state.header;
-    header.editMode = header.editMode ? false : true;
-    this.setState(() => ({
-      header,
-    }));
-  }
-
-  nameChange = (e) => {
-    this.setState({
-      name: e.target.value,
-    });
+    setState({ ...state, editMode: currentState.header.editMode });
   };
 
-  render() {
-    return (
-      <div className="header-container">
-        <Header
-          name={this.state.name}
-          handler={this.headerEdit}
-          handleChange={this.nameChange}
-          editMode={this.state.header.editMode}
-        />
-      </div>
-    );
-  }
+  const nameChange = (e) => {
+    setState({ ...state, name: e.target.value });
+  };
+
+  return (
+    <div className="header-container">
+      <Header
+        name={state.name}
+        handler={headerEdit}
+        handleChange={nameChange}
+        editMode={state.header.editMode}
+      />
+    </div>
+  );
 }
 
 export { HeaderContainer };

@@ -12,7 +12,6 @@ function GeneralContainer() {
 
   const generalEdit = function () {
     let currentState = { ...state };
-    console.log(currentState.editMode);
     currentState.editMode = currentState.editMode === true ? false : true;
     setState({ ...state, editMode: currentState.editMode });
   };
@@ -26,7 +25,6 @@ function GeneralContainer() {
       ...state,
       [currentProp]: e.target.value,
     });
-    console.log(state);
   };
 
   const editMode = state.editMode;

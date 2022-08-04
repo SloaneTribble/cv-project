@@ -35,6 +35,7 @@ function EducationContainer() {
   });
 
   const addModeToggle = function () {
+    console.log(state);
     setState((prevState) => ({
       ...prevState,
       addMode: state.addMode === true ? false : true,
@@ -75,7 +76,7 @@ function EducationContainer() {
       (obj) => obj.id === e.target.className
     );
     currentSchools[index].editMode = true;
-    setState({ schools: currentSchools });
+    setState({ ...state, schools: currentSchools });
   };
 
   const submitEdit = (e) => {
@@ -95,7 +96,7 @@ function EducationContainer() {
     activeSchool.gradYear = newGradYear;
     activeSchool.editMode = false;
 
-    setState({ schools: currentSchools });
+    setState({ ...state, schools: currentSchools });
   };
 
   const deleteSchool = (e) => {
@@ -109,6 +110,7 @@ function EducationContainer() {
     });
 
     setState({
+      ...state,
       schools: updatedSchools,
     });
   };

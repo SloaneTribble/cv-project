@@ -60,7 +60,7 @@ function PracticalContainer() {
     let currentJobs = [...state.jobs];
     let index = currentJobs.findIndex((obj) => obj.id === e.target.className);
     currentJobs[index].editMode = true;
-    setState({ jobs: currentJobs });
+    setState({ ...state, jobs: currentJobs });
   };
 
   const submitEdit = (e) => {
@@ -84,7 +84,7 @@ function PracticalContainer() {
     activeJob.endDate = newEndDate;
     activeJob.editMode = false;
 
-    setState({ jobs: currentJobs });
+    setState({ ...state, jobs: currentJobs });
   };
 
   const deleteJob = (e) => {
@@ -98,6 +98,7 @@ function PracticalContainer() {
     });
 
     setState({
+      ...state,
       jobs: updatedJobs,
     });
   };

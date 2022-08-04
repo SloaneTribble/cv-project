@@ -1,44 +1,38 @@
 import React, { Component } from "react";
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
+function Header(props) {
+  const editMode = props.editMode;
 
-  render() {
-    const editMode = this.props.editMode;
+  let nameField;
 
-    let nameField;
+  let buttonText;
 
-    let buttonText;
-
-    if (editMode) {
-      buttonText = "Submit";
-      nameField = (
-        <form className="name-form">
-          <label htmlFor="name">Name: </label>
-          <input
-            type="text"
-            id="name"
-            value={this.props.name}
-            onChange={this.props.handleChange}
-          ></input>
-        </form>
-      );
-    } else {
-      buttonText = "Edit";
-      nameField = <div className="header-name">{this.props.name}</div>;
-    }
-    return (
-      <div className="header">
-        <div className="header-title">{this.props.title}</div>
-        {nameField}
-        <button className="name-edit" onClick={this.props.handler}>
-          {buttonText}
-        </button>
-      </div>
+  if (editMode) {
+    buttonText = "Submit";
+    nameField = (
+      <form className="name-form">
+        <label htmlFor="name">Name: </label>
+        <input
+          type="text"
+          id="name"
+          value={props.name}
+          onChange={props.handleChange}
+        ></input>
+      </form>
     );
+  } else {
+    buttonText = "Edit";
+    nameField = <div className="header-name">{props.name}</div>;
   }
+  return (
+    <div className="header">
+      <div className="header-title">{props.title}</div>
+      {nameField}
+      <button className="name-edit" onClick={props.handler}>
+        {buttonText}
+      </button>
+    </div>
+  );
 }
 
 export { Header };

@@ -1,107 +1,93 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 // Contains email, phone and brand website
 
-class GeneralContainer extends Component {
-  constructor(props) {
-    super(props);
+function GeneralContainer() {
+  const [state, setState] = useState({
+    editMode: false,
+    email: "nun@sandwich.uk",
+    phone: "555-416-3838",
+    website: "https://www.pbjmanagement.co.uk/artists/mighty-boosh",
+  });
 
-    this.state = {
-      editMode: false,
-      email: "nun@sandwich.uk",
-      phone: "555-416-3838",
-      website: "https://www.pbjmanagement.co.uk/artists/mighty-boosh",
-    };
-
-    this.generalEdit = this.generalEdit.bind(this);
-
-    this.emailChange = this.emailChange.bind(this);
-
-    this.phoneChange = this.phoneChange.bind(this);
-
-    this.websiteChange = this.websiteChange.bind(this);
-  }
-
-  generalEdit() {
-    this.setState((prevState) => ({
+  const generalEdit = function () {
+    setState((prevState) => ({
       editMode: !prevState.editMode,
     }));
-  }
+  };
 
-  emailChange = (e) => {
-    this.setState({
+  const emailChange = (e) => {
+    setState({
       email: e.target.value,
     });
   };
 
-  phoneChange = (e) => {
-    this.setState({
+  const phoneChange = (e) => {
+    setState({
       phone: e.target.value,
     });
   };
 
-  websiteChange = (e) => {
-    this.setState({
+  const websiteChange = (e) => {
+    setState({
       website: e.target.value,
     });
   };
 
-  render() {
-    const editMode = this.state.editMode;
+  const editMode = state.editMode;
 
-    let buttonText;
+  let buttonText;
 
-    let generalField;
+  let generalField;
 
-    if (editMode) {
-      buttonText = "Submit";
-      generalField = (
-        <form className="general-form">
-          <label htmlFor="email">Email: </label>
-          <input
-            type="email"
-            id="email"
-            value={this.state.email}
-            onChange={this.emailChange}
-          ></input>
+  if (editMode) {
+    buttonText = "Submit";
+    generalField = (
+      <form className="general-form">
+        <label htmlFor="email">Email: </label>
+        <input
+          type="email"
+          id="email"
+          value={state.email}
+          onChange={emailChange}
+        ></input>
 
-          <label htmlFor="phone">Phone: </label>
-          <input
-            type="text"
-            id="phone"
-            value={this.state.phone}
-            onChange={this.phoneChange}
-          ></input>
+        <label htmlFor="phone">Phone: </label>
+        <input
+          type="text"
+          id="phone"
+          value={state.phone}
+          onChange={phoneChange}
+        ></input>
 
-          <label htmlFor="website">Website: </label>
-          <input
-            type="text"
-            id="website"
-            value={this.state.website}
-            onChange={this.websiteChange}
-          ></input>
-        </form>
-      );
-    } else {
-      buttonText = "Edit";
-      generalField = (
-        <div className="general-info">
-          <div className="email">{this.state.email}</div>
-          <div className="phone">{this.state.phone}</div>
-          <div className="website">{this.state.website}</div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="general">
-        {generalField}
-        <button className="general-edit" onClick={this.generalEdit}>
-          {buttonText}
-        </button>
+        <label htmlFor="website">Website: </label>
+        <input
+          type="text"
+          id="website"
+          value={state.website}
+          onChange={websiteChange}
+        ></input>
+      </form>
+    );
+  } else {
+    buttonText = "Edit";
+    generalField = (
+      <div className="general-info">
+        <div className="email">{state.email}</div>
+        <div className="phone">{state.phone}</div>
+        <div className="website">{state.website}</div>
       </div>
     );
   }
+
+  return (
+    <div className="general">
+      {generalField}
+      <button className="general-edit" onClick={generalEdit}>
+        {buttonText}
+      </button>
+    </div>
+  );
 }
 
 export { GeneralContainer };

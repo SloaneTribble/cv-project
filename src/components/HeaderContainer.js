@@ -12,10 +12,8 @@ function HeaderContainer() {
 
   const headerEdit = function () {
     let currentState = { ...state };
-    console.log(currentState.header.editMode);
 
     currentState.header.editMode = currentState.header.editMode ? false : true;
-    console.log(currentState.header.editMode);
 
     setState({ ...state, editMode: currentState.header.editMode });
   };

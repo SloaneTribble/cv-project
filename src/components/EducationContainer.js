@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { SchoolOverview } from "./SchoolOverview";
 
@@ -6,75 +6,59 @@ import { AddSchool } from "./AddSchool";
 
 import uniqid from "uniqid";
 
-// Next: allow user to edit each school entry
-
-class EducationContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      addMode: false,
-      schools: [
-        {
-          editMode: false,
-          id: uniqid(),
-          name: "School One",
-          major: "Major",
-          gradYear: "1964-01-01",
-        },
-        {
-          editMode: false,
-          id: uniqid(),
-          name: "School Two",
-          major: "Majeur",
-          gradYear: "1983-12-25",
-        },
-      ],
-      currentSchool: {
+function EducationContainer() {
+  const [state, setState] = useState({
+    addMode: false,
+    schools: [
+      {
         editMode: false,
         id: uniqid(),
-        name: "",
-        major: "",
-        gradYear: "",
+        name: "School One",
+        major: "Major",
+        gradYear: "1964-01-01",
       },
-    };
-
-    this.addModeToggle = this.addModeToggle.bind(this);
-
-    this.handleChange = this.handleChange.bind(this);
-
-    this.submitSchool = this.submitSchool.bind(this);
-
-    this.editSchool = this.editSchool.bind(this);
-
-    this.submitEdit = this.submitEdit.bind(this);
-
-    this.deleteSchool = this.deleteSchool.bind(this);
-  }
-
-  addModeToggle() {
-    this.setState((prevState) => ({
-      addMode: !prevState.addMode,
-    }));
-    console.log(this.state.addMode);
-  }
-
-  handleChange = (e) => {
-    console.log(e.target);
-    this.setState((prevState) => ({
-      currentSchool: {
-        ...prevState.currentSchool,
-        [e.target.id]: e.target.value,
+      {
+        editMode: false,
+        id: uniqid(),
+        name: "School Two",
+        major: "Majeur",
+        gradYear: "1983-12-25",
       },
+    ],
+    currentSchool: {
+      editMode: false,
+      id: uniqid(),
+      name: "",
+      major: "",
+      gradYear: "",
+    },
+  });
+
+  const addModeToggle = function () {
+    setState((prevState) => ({
+      ...prevState,
+      addMode: state.addMode === true ? false : true,
     }));
   };
 
-  submitSchool = (e) => {
+  const handleChange = (e) => {
+    let currentState = { ...state };
+    let school = currentState.currentSchool;
+    console.log(school);
+    let currentProperty = e.target.id;
+    school[currentProperty] = e.target.value;
+    setState({
+      ...state,
+      currentSchool: school,
+    });
+  };
+
+  const submitSchool = (e) => {
     e.preventDefault();
     console.log(e.target);
-    console.log(this.state.currentSchool);
-    this.setState({
-      schools: this.state.schools.concat(this.state.currentSchool),
+    console.log(state.currentSchool);
+    setState({
+      schools: state.schools.concat(state.currentSchool),
       addMode: false,
       currentSchool: {
         id: uniqid(),
@@ -85,16 +69,16 @@ class EducationContainer extends Component {
     });
   };
 
-  editSchool = (e) => {
-    let currentSchools = [...this.state.schools];
+  const editSchool = (e) => {
+    let currentSchools = [...state.schools];
     let index = currentSchools.findIndex(
       (obj) => obj.id === e.target.className
     );
     currentSchools[index].editMode = true;
-    this.setState({ schools: currentSchools });
+    setState({ schools: currentSchools });
   };
 
-  submitEdit = (e) => {
+  const submitEdit = (e) => {
     e.preventDefault();
     console.log(e.target);
     let newName = e.target.name.value;
@@ -102,7 +86,7 @@ class EducationContainer extends Component {
     let newGradYear = e.target.gradYear.value;
     let workingID = e.target.className;
 
-    let currentSchools = [...this.state.schools];
+    let currentSchools = [...state.schools];
     let index = currentSchools.findIndex((obj) => obj.id === workingID);
     let activeSchool = currentSchools[index];
 
@@ -111,56 +95,53 @@ class EducationContainer extends Component {
     activeSchool.gradYear = newGradYear;
     activeSchool.editMode = false;
 
-    this.setState({ schools: currentSchools });
+    setState({ schools: currentSchools });
   };
 
-  deleteSchool = (e) => {
+  const deleteSchool = (e) => {
     console.log(e.target.className);
     const schoolID = e.target.className;
 
-    let schools = this.state.schools;
+    let schools = state.schools;
 
     let updatedSchools = schools.filter((school) => {
       return school.id !== schoolID;
     });
 
-    this.setState({
+    setState({
       schools: updatedSchools,
     });
   };
+  const currentMode = state.addMode;
 
-  render() {
-    const currentMode = this.state.addMode;
-
-    let addText;
-    if (currentMode) {
-      addText = "Close";
-    } else {
-      addText = "Add School";
-    }
-
-    return (
-      <div className="education">
-        <span>Education</span>
-        <SchoolOverview
-          schools={this.state.schools}
-          editSchool={this.editSchool}
-          submitEdit={this.submitEdit}
-          deleteSchool={this.deleteSchool}
-        />
-        <br></br>
-        <button className="new-school" onClick={this.addModeToggle}>
-          {addText}
-        </button>
-        <AddSchool
-          addMode={this.state.addMode}
-          handleChange={this.handleChange}
-          currentSchool={this.state.currentSchool}
-          submitSchool={this.submitSchool}
-        />
-      </div>
-    );
+  let addText;
+  if (currentMode) {
+    addText = "Close";
+  } else {
+    addText = "Add School";
   }
+
+  return (
+    <div className="education">
+      <span>Education</span>
+      <SchoolOverview
+        schools={state.schools}
+        editSchool={editSchool}
+        submitEdit={submitEdit}
+        deleteSchool={deleteSchool}
+      />
+      <br></br>
+      <button className="new-school" onClick={addModeToggle}>
+        {addText}
+      </button>
+      <AddSchool
+        addMode={state.addMode}
+        handleChange={handleChange}
+        currentSchool={state.currentSchool}
+        submitSchool={submitSchool}
+      />
+    </div>
+  );
 }
 
 export { EducationContainer };

@@ -11,27 +11,22 @@ function GeneralContainer() {
   });
 
   const generalEdit = function () {
-    setState((prevState) => ({
-      editMode: !prevState.editMode,
-    }));
+    let currentState = { ...state };
+    console.log(currentState.editMode);
+    currentState.editMode = currentState.editMode === true ? false : true;
+    setState({ ...state, editMode: currentState.editMode });
   };
 
-  const emailChange = (e) => {
-    setState({
-      email: e.target.value,
-    });
-  };
+  const handleChange = (e) => {
+    let currentState = { ...state };
+    let currentProp = e.target.id;
+    currentState[currentProp] = e.target.value;
 
-  const phoneChange = (e) => {
     setState({
-      phone: e.target.value,
+      ...state,
+      [currentProp]: e.target.value,
     });
-  };
-
-  const websiteChange = (e) => {
-    setState({
-      website: e.target.value,
-    });
+    console.log(state);
   };
 
   const editMode = state.editMode;
@@ -49,7 +44,7 @@ function GeneralContainer() {
           type="email"
           id="email"
           value={state.email}
-          onChange={emailChange}
+          onChange={handleChange}
         ></input>
 
         <label htmlFor="phone">Phone: </label>
@@ -57,7 +52,7 @@ function GeneralContainer() {
           type="text"
           id="phone"
           value={state.phone}
-          onChange={phoneChange}
+          onChange={handleChange}
         ></input>
 
         <label htmlFor="website">Website: </label>
@@ -65,7 +60,7 @@ function GeneralContainer() {
           type="text"
           id="website"
           value={state.website}
-          onChange={websiteChange}
+          onChange={handleChange}
         ></input>
       </form>
     );

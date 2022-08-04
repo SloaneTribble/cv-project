@@ -1,63 +1,57 @@
-import React, { Component } from "react";
+import React from "react";
 
-class AddJob extends Component {
-  constructor(props) {
-    super(props);
-  }
+function AddJob(props) {
+  const addMode = props.addMode;
 
-  render() {
-    const addMode = this.props.addMode;
+  if (addMode) {
+    return (
+      <div className="add-job">
+        <form onSubmit={props.submitJob}>
+          <label htmlFor="company">Company: </label>
+          <input
+            type="text"
+            id="company"
+            value={props.currentJob.company}
+            onChange={props.handleChange}
+          ></input>
 
-    if (addMode) {
-      return (
-        <div className="add-job">
-          <form onSubmit={this.props.submitJob}>
-            <label htmlFor="company">Company: </label>
-            <input
-              type="text"
-              id="company"
-              value={this.props.currentJob.company}
-              onChange={this.props.handleChange}
-            ></input>
+          <label htmlFor="title">Title: </label>
+          <input
+            type="text"
+            id="title"
+            value={props.currentJob.title}
+            onChange={props.handleChange}
+          ></input>
 
-            <label htmlFor="title">Title: </label>
-            <input
-              type="text"
-              id="title"
-              value={this.props.currentJob.title}
-              onChange={this.props.handleChange}
-            ></input>
+          <label htmlFor="mainTasks">Main Tasks: </label>
+          <textarea
+            type="textarea"
+            id="mainTasks"
+            rows="3"
+            value={props.currentJob.mainTasks}
+            onChange={props.handleChange}
+          ></textarea>
 
-            <label htmlFor="mainTasks">Main Tasks: </label>
-            <textarea
-              type="textarea"
-              id="mainTasks"
-              rows="3"
-              value={this.props.currentJob.mainTasks}
-              onChange={this.props.handleChange}
-            ></textarea>
+          <label htmlFor="startDate">Start Date: </label>
+          <input
+            type="date"
+            id="startDate"
+            value={props.currentJob.startDate}
+            onChange={props.handleChange}
+          ></input>
 
-            <label htmlFor="startDate">Start Date: </label>
-            <input
-              type="date"
-              id="startDate"
-              value={this.props.currentJob.startDate}
-              onChange={this.props.handleChange}
-            ></input>
+          <label htmlFor="endDate">Main Tasks: </label>
+          <input
+            type="date"
+            id="endDate"
+            value={props.currentJob.endDate}
+            onChange={props.handleChange}
+          ></input>
 
-            <label htmlFor="endDate">Main Tasks: </label>
-            <input
-              type="date"
-              id="endDate"
-              value={this.props.currentJob.endDate}
-              onChange={this.props.handleChange}
-            ></input>
-
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      );
-    }
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
   }
 }
 
